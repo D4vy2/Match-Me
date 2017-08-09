@@ -1,0 +1,73 @@
+{{>header}}
+{{>navbar}}
+
+<div class="container">
+    <div class="row" id="activity-title">
+        <h3>My photos (maximum 5)</h3>
+    </div>
+<div name="btn-container"  class="row" id="btn-container" style="display: none;">
+	<div class="col-md-6 col-lg-6 col-xs-6" style="text-align: right;">
+		<form name="form_main-picture" action="myphotos/setmain" method="post">
+			<input type="hidden" name="setmain" id="setmain" value="">
+			<input type="submit" id="btn-setmain" style="margin: auto;" class="btn btn-info" type="submit" value="Set as profil photo"/>
+		</form>
+	</div>
+	<div class="col-md-6 col-lg-6 col-xs-6">
+	<form name="form_delete" action="myphotos/remove" method="post">
+		<input type="hidden" name="hidden" id="hidden" value="">
+		<input type="submit" id="btn-delete" style="margin: auto;" class="btn btn-danger" type="submit" value="Remove image"/>
+	</form>
+	</div>
+</div>
+
+{{!--Formulaire pour upload--}}
+	<div class="control-group">
+		<div class = "row" style="margin-top: 3em;">
+		{{#unless images}}
+		<div class="alert alert-warning center" style="text-align: center; height: 10em; font-size: 2em; padding-top: 3em;">
+			<strong>Hey!</strong> You don't have any photos.
+		</div>
+		{{/unless}}
+		{{#each images}}
+				<div class = "col-sm-6 col-md-3">
+						<a class = "thumbnail">
+							<img src = "{{ this.name }}" id="img{{this.id}}" name="img{{this.id}}" alt = "Generic placeholder thumbnail">
+						</a>
+				</div>
+		{{/each}}
+		</div>
+	</div>
+<form action="" method="post" enctype="multipart/form-data">
+	<div class="form-group">
+<div class="input-group">
+    <span class="input-group-btn">
+		<button id="btn-browse" type="button" class="btn btn-default">
+			<span class="glyphicon glyphicon-file"></span>
+		</button>
+	</span>
+	<input type="file" id="files-input-upload" name="file" accept="image/*" style="display:none;">
+	<input type="text" id="file-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+	<span class="input-group-btn">
+		<button type="button" class="btn btn-default" disabled="disabled" id="btn-upload">
+			<span class="glyphicon glyphicon-upload"></span>
+		</button>
+	</span>
+	<input type="submit" id="btn-save" style="display: none;" class="btn btn-primary" value="Set as profil photo"/>
+</div>
+    <img id="img-upload"/>
+</div>
+</form>
+{{#if error}}
+<div id=V"errorMessage" class="alert alert-danger fade in" style="text-align: center">
+  <p>{{ error }} </p><br/>
+{{/if }}
+</div>
+</div>
+<div style="clear:both; height: 100px;"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/static/js/notification.js"></script>
+<script src="/static/js/socket_online.js"></script>
+<script type="text/javascript" src="/static/js/uploadImage.js"></script>
+<script type="text/javascript" src="/static/js/myphotos.js"></script>
+
+{{>footer}}

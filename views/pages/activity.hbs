@@ -1,0 +1,48 @@
+{{>header}}
+{{>navbar}}
+
+<div class="container-fluid">
+        <div class="col-md-2 col-lg-3 col-sm-0 col-xs-0"></div>
+        <div class="col-md-8 col-lg-6 col-sm-12 col-xs-12">
+        <div class="col-md-2 col-lg-3 col-sm-0 col-xs-0"></div>
+    <div class="row" id="activity-title">
+        <h2>Last activity history</h2>
+    </div>
+    <div class="row">
+        <section id="activity">
+        <ul id="activity-container">    
+            {{#unless activity}}
+                  <li id="activity-row">Nothing for the moment.</li>
+            {{/unless}}
+            {{#if activity}}
+                <h3 style="color: lightgrey; text-align: center;">Most recent</h3>
+                <div style="overflow: auto; max-height: 32em;">
+            {{/if}}
+            {{#each activity}}
+                {{#compare this.eventName '==' 'Like'}}
+                  <li id="activity-row"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> has liked your profile!</li>
+                    <hr>
+                {{/compare}}
+                {{#compare this.eventName '==' 'LikeBack'}}
+                  <li id="activity-row"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> has liked your profile!</li>
+                    <hr>
+                {{/compare}}
+                {{#compare this.eventName '==' 'Visit'}}
+                  <li id="activity-row"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> has visited your profile!</li>
+                    <hr>
+                {{/compare}}
+            {{/each}}
+            {{#if activity}}
+                </div>
+                <h3 style="color: lightgray; text-align: center;">Older</h3>
+            {{/if}}
+        </ul>
+        </section>
+        </div>
+    </div>
+</div>
+<div style="clear:both; height: 10em;"></div>
+{{>footer}}
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/static/js/notification.js"></script>
+<script type="text/javascript" src="/static/js/socket_online.js"></script>

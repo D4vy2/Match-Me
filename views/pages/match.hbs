@@ -1,0 +1,33 @@
+{{>header}}
+{{>navbar}}
+
+<div class="container">
+    <div class="row" style="background-color: #58525b">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="color: white">
+            <h2>List of persons who can interest you:</h2>
+        </div>
+        {{>filterbar}}
+        {{#each users}}
+        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 text-center match-thumbnail">
+            <a href="/profile/{{this.login}}" style="text-decoration: none;">
+            <img class="img-circle img-responsive img-center" src="{{this.name}}" alt="">
+            </a>
+            <h3>{{this.login}}</h3>
+            {{!--Uncomment at bottom to debug--}}
+            <!--<p>{{this.login}} - {{this.age}} - {{this.gender}} - {{this.sexpref}} - {{this.distance}} km - popularity: {{this.popularity}}</p>
+            <p style="background-color: black; color: white;">{{#each this.tags}} {{this}} - {{/each}}</p>
+            <p style="background-color: white;">{{this.commons}} tags in commons</p>-->
+        </div> 
+        {{/each}}
+    </div>
+</div>
+
+
+
+<div style="clear:both; height: 30em;"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/static/js/match.js"></script>
+<script type="text/javascript" src="/static/js/notification.js"></script>
+{{!--<script src="/static/js/socket_online.js"></script>--}}
+
+{{>footer}}

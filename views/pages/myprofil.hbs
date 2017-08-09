@@ -1,0 +1,163 @@
+{{> header }}
+{{> navbar }}
+<div class="container col-xs-12 col-sm-12 col-md-7 col-md-offset-3" id="myprofile-container">
+	<div class="container-fluid" style="padding-bottom: 6rem;">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+     		<h4 style="font-family: inherit; color: #383838;">My main photo</h4>
+			<a href="myphotos" class="thumbnail" style="background-color: black; ">
+				<img src="{{data.user.name}}" alt="Click here to set your profil pic!" id="mainPix" style="color: lightgray;">
+			</a>
+		</div>
+        <h2 style="font-size: 4em; font-family: Impact; text-align: center; margin-top: 3em; text-shadow: 3px 3px 0 white"><span id="login">{{data.user.login}}</span>'s Profile</h2>
+	</div>
+<!--if errors -->
+{{#compare error "!=" undefined}}
+<div id="errorMessage" class="alert alert-danger fade in" style="text-align: center; font-size: 1.3em;">
+  <p>{{ error }} </p><br/>
+</div>
+{{/compare }}
+  <div class="row">
+    <form class="form-horizontal" action="" method="post" name="form-profil" id="form-profil">
+        <div class="control-group">
+            <div class="controls col-xs-6 col-md-6 col-lg-6">
+              <label class="control-label" for="gender">Gender</label>
+              <select id="gender" name="gender" class="form-control">
+							{{#compare data.user.gender "==" 'Male'}}
+								<option selected="selected">Male</option>
+								<option>Female</option>
+							{{/compare}}
+							{{#compare data.user.gender "==" 'Female'}}
+								<option>Male</option>
+								<option selected="selected">Female</option>
+							{{/compare}}
+              </select>
+            </div>
+            <div class="controls col-xs-6 col-md-6 col-lg-6">
+              <label class="control-label" for="age">How old are you?</label>
+			  <input id="age" name="age" type="text" placeholder="Your age" class="form-control" value="{{ data.user.age }}">
+				<small id="ageHelp" class="form-text text-muted" style="color: white; font-size: 90%;">You have to be legally an adult (minimum 18)</small>
+			  <p class="help-block"></p>
+            </div>
+        </div>
+		<p></p>
+        <div class="control-group">
+            <div class="controls">
+            <label class="control-label" for="firstName">First Name</label>
+				<input id="firstName" name="firstName" type="text" placeholder="first name" class="form-control" value="{{ data.user.firstName }}">
+				<p class="help-block"></p>
+            </div>
+        </div>
+		<p></p>
+        <div class="control-group">
+            <label class="control-label">Last Name</label>
+            <div class="controls">
+							<input id="lastName" name="lastName" type="text" placeholder="last name" class="form-control" value="{{ data.user.lastName }}">
+							<p class="help-block"></p>
+            </div>
+        </div>
+		<p></p>
+        <div class="control-group">
+            <label class="control-label">Email</label>
+            <div class="controls">
+							<input id="email" name="email" type="email" placeholder="you@example.com" class="form-control" value="{{ data.user.email }}">
+							<p class="help-block"></p>
+            </div>
+        </div>
+		<p></p>
+        <div class="control-group">
+            <label class="control-label" for="selectbasic">Sex preference</label>
+            <div class="controls">
+            <select id="sexpref" name="sexpref" class="form-control">
+
+							{{#compare data.user.sexpref "==" 'Straight'}}
+								<option selected="selected">Straight</option>
+								<option>Gay</option>
+								<option>Bisexual</option>
+							{{/compare}}
+							{{#compare data.user.sexpref "==" 'Gay'}}
+								<option>Straight</option>
+								<option selected="selected">Gay</option>
+								<option>Bisexual</option>
+							{{/compare}}
+							{{#compare data.user.sexpref "==" 'Bisexual'}}
+								<option>Straight</option>
+								<option>Gay</option>
+								<option selected="selected">Bisexual</option>
+							{{/compare}}
+
+            </select>
+            </div>
+        </div>
+		<p><br/></p>
+        <div class="control-group">
+            <label class="control-label">Talk me about you</label>
+            <div class="controls">
+						<textarea id='bio' name="bio" style="height: 12em;" placeholder="About me..." class="form-control" rows="5">{{ data.user.bio }}</textarea>
+            <p class="help-block"></p>
+            </div>
+        </div>
+		<p><br/><hr/></p>
+        <div class="control-group">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h4>Interest (3 tags minimum, max 12)</h4>
+                    <div class="container">
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+						<input type="text" name="tags" id="tags" value="" placeholder="add a new tag"/>
+						<span style="background-color: darkslateblue; color: white; padding: 0.3em 0.5em 0.3em 0.5em; border: 2px solid white;" type="button" id="btn-addTag" name="btn-addTag">+</span>
+					</div>
+                    </div>
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="allTags" name="allTags">
+						{{#each userTags}}
+							{{#each this}}
+							<span class="tag">{{this}}</span>
+							{{/each}}
+						{{/each}}
+					</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="tagsAvail-container">
+						<h4>Tags available</h4>
+						{{#each tags}}
+							{{#each this}}
+							<span class="tagAvailable">{{this.name}}</span>
+							{{/each}}
+						{{/each}}
+					</div>
+        </div>
+		<p><br/><hr></p>
+		<div class="control-group" style="color: white; ">
+			<h4>Geolocation</h4>
+			<p>Do you want to be geolocate? It will help to meet people around you.</p>
+			{{#compare data.user.geoloc '==' 'yes'}}
+				<input type="radio" name="geoloc" value="yes" id="yes" checked="checked">
+				<label for="yes" name="btn-geo-yes"  id="btn-geo-yes" style="color: ghostwhite">Yes</label>
+				<input type="radio" name="geoloc" value="no" id="no">
+				<label for="no"name="btn-geo-no" id="btn-geo-no" style="color: ghostwhite">No</label>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="map-container" style="height: 400px; padding-top: 1em; padding-bottom: 3em;">
+			{{/compare}}
+			{{#compare data.user.geoloc '==' 'no'}}
+				<input type="radio" name="geoloc" value="yes" id="yes">
+				<label for="yes" name="btn-geo-yes"  id="btn-geo-yes" style="color: ghostwhite">Yes</label>
+				<input type="radio" name="geoloc" value="no" id="no" checked="checked">
+				<label for="no"name="btn-geo-no" id="btn-geo-no" style="color: ghostwhite">No</label>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="map-container" style="height: 400px; padding-top: 1em; padding-bottom: 3em; display: none;">
+			{{/compare}}
+			<input type="hidden" name="position" value="{{data.user.position}}" id="position">
+			<div id="map"></div>
+			</div>
+		</div>
+		<p><br/></p>
+        <input type="submit" class="btn" style="background-color: #2F2833; border-color: white; color: white;" value="Save my profil" id="form-submit"/>
+    </form>
+  </div>
+</div>
+<div style="clear:both; height: 100px;"></div>
+
+<script type="text/javascript" src="/static/js/tag.js"></script>
+<script type="text/javascript" src="/static/js/myprofil.js"></script>
+<script type="text/javascript" src="/static/js/geoloc.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/static/js/notification.js"></script>
+<script src="/static/js/socket_online.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRiXxEmicdNt02lwdY6nrWC5EYN2Ebolg&callback=initMap"></script>
+
+{{>footer}}

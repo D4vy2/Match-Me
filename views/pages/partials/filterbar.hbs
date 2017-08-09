@@ -1,0 +1,59 @@
+  <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="filter-container">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <form method="POST" id="form-sort" name="form-sort" action="/match/sort" style="max-width: 5em;">
+                        <select name="sort" id="sort" class="selectpicker" style="height: 2.5em; visibility: visible; opacity: 1">
+                            <option value="" disabled selected>Sort by</option>
+                            <option value="age">Age</option>
+                            <option value="location">Location</option>
+                            <option value="popularity">Popularity</option>
+                            <option value="commonstags">Common tags</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
+                    <button type="button" id="btn-filter" class="btn" style="margin-right: 0.5em; background-color: dimgray; color: white;">Filter by</button>
+                </div>
+                <form method="POST" id="form-filter" name="form-filter" action="/match/filter">
+                    {{!--<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" style="color: black; margin-bottom: 1em;">--}}
+                        <select name="filterAge" id="filterAge" class="selectpicker">
+                            <option value="" disabled selected>Age</option>
+                            <option value="18-25">18-25</option>
+                            <option value="25-35">25-35</option>
+                            <option value="35-50">35-50</option>
+                            <option value="50-70">50-70</option>
+                            <option value="70-120">70+</option>
+                        </select>
+                    {{!--</div>--}}
+                    {{!--<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="color: black; margin-bottom: 1em;">--}}
+                        <select name="filterDistance" id="filterDistance" class="selectpicker">
+                            <option value="" disabled selected>Distance</option>
+                            <option value="0-10">10 km</option>
+                            <option value="0-30">30 km</option>
+                            <option value="0-100">100 km</option>
+                            <option value="0-500">500 km</option>
+                            <option value="0-20000">500+ km</option>
+                        </select>
+                    {{!--</div>--}}
+                    {{!--<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" style="color: black; margin-bottom: 1em;">--}}
+                        <select name="filterPopularity" id="filterPopularity" class="selectpicker">
+                            <option value="" disabled selected>Popularity</option>
+                            <option value="0-5">0-5</option>
+                            <option value="5-20">5-20</option>
+                            <option value="20-50">20-50</option>
+                            <option value="50-100">50-100</option>
+                            <option value="100-20000">100+</option>
+                        </select>
+                    {{!--</div>--}}
+                    {{!--<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" style="color: black; margin-bottom: 1em;">--}}
+                        <select name="filterTags" id="filterTags" class="selectpicker">
+                            <option value="" disabled selected>Tags in commons</option>
+                            <option value="1-3">1-3</option>
+                            <option value="3-6">3-6</option>
+                            <option value="6-9">6-9</option>
+                            <option value="9-13">9+</option>
+                        </select>
+                    {{!--</div>--}}
+                </form>
+            </div>
+        </div>

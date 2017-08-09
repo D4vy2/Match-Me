@@ -1,0 +1,26 @@
+{{> header }}
+<div class="container-fluid">
+    <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    <div id="signin-container" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <h2 style="color: black;">Sign in</h2>
+      <p><br/>No account? <a href="/auth/register" id="signup">Create one!</a></p>
+      <form action="" method="POST">
+        <div class="form-group">
+          <input type="text" name="login" placeholder="Login" class="form-control"/><br/>
+          <input type="password" name="password" placeholder="Password" class="form-control"/>
+          <div style="text-align: right;">
+          <a href="/auth/resetPassword" style="color: lightblue; text-decoration: none;">Forgot your password?</a>
+          </div>
+          <br/><br/>
+          <input type="submit" id="btn-signin" class="btn btn-primary" value="Sign in">
+        </div>
+      </form>
+    </div>
+</div>
+<!--if errors -->
+{{#if error}}
+<div id="errorMessage" class="alert alert-danger fade in" style="text-align: center">
+  <p>{{ error }} </p><br/>
+</div>
+{{/if }}
+{{> footer }}

@@ -1,0 +1,104 @@
+{{>header}}
+{{>navbar}}
+
+<input type="hidden" id="url" value="{{url}}"/>
+<div class="container-fluid" style="text-align: center;">
+    <div class="row">
+        {{!-- empty div to center properly--}}
+        <div class="col-lg-3 col-md-2 col-sm-1 col-xs=0"></div>
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12" style="background-color:white; padding-top: 2em; padding-bottom: 10em;">
+            {{!-- empty div to center properly--}}
+            <div class="col-md-2 col-lg-2"></div>
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 col-centered" id="profil-container">
+                <div class="control-group" style="padding-top: 1.8em;">
+                    <div id="popularity-container">{{user.popularity}}</div>
+                    <div style="text-align: right; margin-right: 1.8em;">
+                        <span id="last-connection">{{user.lastConnection}}</span>
+                        <div id="status"></div>
+                    </div>
+                    <h1 id="login">{{user.login}}</h1>
+                    {{#if likeMe}}
+                        <span id="likeme" style="color: salmon;">likes you</span>
+                    {{/if}}
+                </div>
+                <div class="control-group">
+                    <img id="profil-main-pic" src="{{mainpix}}" alt="NO PIC">
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    {{!--Block / Unblock section--}}
+                    {{#if block}}
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="block-container" style="background-color: salmon;">
+                            <form action="" method="post" name="form-block" id="form-block">
+                                    <img src="/static/img/block_icon.png" alt="block-icon" style="max-width: 45px; padding-top: 0.4em;">
+                                    <input type="hidden" id="btn-block" value="Unblock" style="display: inline"/>
+                            </form>
+                        </div>
+                    {{else}}
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="block-container">
+                            <form action="" method="post" name="form-block" id="form-block">
+                                <img src="/static/img/block_icon.png" alt="block-icon" style="max-width: 45px; padding-top: 0.4em;">
+                                <input type="hidden" id="btn-block" value="Block" style="display: inline"/>
+                            </form>
+                        </div>
+                    {{/if}}
+                    {{!--Like / Unlike section--}}
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="like-container">
+                        <form action="" method="post" name="form-like" id="form-like">
+                            {{#if like}}
+                                <span id="span-like" style="font-size: 3em; color: red;">❤</span>
+                                <input type="hidden" id="btn-like" value="Unlike" style="display: inline"/>
+                            {{else}}
+                                <span id="span-like" style="font-size: 3em; color: lightgray;">❤</span>
+                                <input type="hidden" id="btn-like" value="Like" style="display: inline"/>
+                            {{/if}}
+                        </form>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 co-lg-3" id="report-container" style="padding-top: 0.5em;">
+                        <form action="" method="post" name="form-report" id="form-report">
+                            <span id="report-content">Report as fake</span>
+                            <input type="hidden" id="btn-report" value="Report" style="display: inline"/>
+                        </form>
+                    </div>
+                </div>
+                <hr/>
+                <div class="control-group">
+                    <h3>{{user.firstName}} {{user.lastName}}</h3>
+                    <p>{{user.age}} years old</p>
+                </div>
+                <div class="control-group">
+                    <p>{{user.gender}}, {{user.sexpref}}</p>
+                </div>
+                {{#if connected}}
+                    <div class="control-group" id="btn-chat-container">
+                        <a href="{{user.login}}/chat"><button type="button" id="btn-chat" class="btn btn-default">Start a conversation</button></a>
+                    </div>
+                {{/if}}
+                <div class="row" id="profil-img-container">
+                {{#each images}}
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <img class="img-responsive profil-img"src="{{this.name}}"/>
+                    </div>
+                {{/each}}
+                </div>
+                <div class="row" id="profil-tags-container">
+                    {{#each tags}}
+                        <span class="profil-tag">{{this.name}}</span>
+                    {{/each}}
+                </div>
+                <div class="row" id="profil-bio">
+                <p>About me:</p><br/>
+                    <p>{{user.bio}}</p>
+                </div>
+            </div>
+            {{!--Empty div to center properly--}}
+            <div></div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/static/js/profile.js"></script>
+<script type="text/javascript" src="/static/js/notification.js"></script>
+
+{{>footer}}

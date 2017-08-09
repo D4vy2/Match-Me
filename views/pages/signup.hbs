@@ -1,0 +1,45 @@
+{{> header }}
+  <div class="container-fluid">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+    <form action="" method="POST">
+      <div id="signup-container" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <h2 style="text-align: center; color: black;">Sign Up</h2>
+      <div class="form-group">
+        <label for="firstName" >First name</label>
+        <input type="text" name="firstName" id="firstName" class="form-control"/><br/>
+      </div>
+      <div class="form-group">
+        <label for="lastName" >Last name</label>
+        <input type="text" name="lastName" id="lastName" class="form-control"/><br/>
+      </div>
+      <div class="form-group">
+        <label for="login" >Login</label>
+        <input type="text" name="login" id="login" class="form-control"/><br/>
+      </div>
+      <div class="form-group">
+        <label for="email" >Email</label>
+        <input type="email" name="email" id="email" class="form-control"/>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small><br/><br/>
+      </div>
+      <div class="form-group">
+        <label for="password" >Password</label>
+        <input type="password" name="password" id="password" class="form-control"/><br/>
+      </div>
+      <div class="form-group">
+        <label for="repassword" >Confirm password</label>
+        <input type="password" name="repassword" id="repassword" class="form-control"/><br/>
+      </div>
+      <!-- Errors message -->
+      {{#if error}}
+        <div class="alert alert-danger fade in" style="text-align: center;">
+          {{{ error }}}
+        </div>
+      {{/if }}
+      <input type="submit" class="btn btn-primary center-block" value="Sign up">
+      </div>
+      </div>
+    </form>
+  </div>
+<div style="clear:both; height: 100px;"></div>
+
+{{> footer }}

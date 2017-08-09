@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/match">Match ♥‿♥ Me</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/users/activity">Activity <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="/search">Search <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications<span class="caret"></span></a>
+          <ul class="dropdown-menu" id="notifications">
+            <span id="currentUser" style="display: none;">{{currentUser}}</span>
+
+            <div id="notification-container">
+            {{#if notification}}
+              {{#each notification}}
+                {{#compare this.eventName '==' 'Like'}}
+                  <li id="notification"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> has liked your profile!</li>
+                {{/compare}}
+                {{#compare this.eventName '==' 'LikeBack'}}
+                  <li id="notification"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> liked you back! <p>You are now connected!</p></li>
+                {{/compare}}
+                {{#compare this.eventName '==' 'Unlike'}}
+                  <li id="notification"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> doesn't like you anymore...</li>
+                {{/compare}}
+                {{#compare this.eventName '==' 'Visit'}}
+                  <li id="notification"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> has visited your profile!</li>
+                {{/compare}}
+                {{#compare this.eventName '==' 'Message'}}
+                  <li id="notification"><a href="http://localhost:8888/profile/{{this.login}}"><span id="profile-name">{{this.login}}</span></a> sent you a private message!</li>
+                {{/compare}}
+                <span style="display:none;">{{this.id}}</span>
+                <span style="display:none;">{{this.status}}</span>
+              {{/each}}
+            {{else}}
+                <li id="notification" style="background-color: white;" >You don't have notifications yet </li>
+                <li role="separator" class="divider"></li>
+                <span style="display:none;">1</span>
+            {{/if}}
+            </div>
+          
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> My account<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <span id="currentUser" style="display: none;">{{currentUser}}</span>
+            <li><a href="/users/myprofil">My profile</a></li>
+            <li><a href="/users/myphotos">My photos</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/auth/logout">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

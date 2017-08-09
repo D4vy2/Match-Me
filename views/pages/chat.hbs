@@ -1,0 +1,31 @@
+{{>header}}
+{{>navbar}}
+
+
+<div class="container">
+    <div class="row" id="chat-bar">
+        <h2>~~ Chat session with <span id="chat-id">{{dest}}</span> ~~</h2>
+    </div>
+    <div class="row">
+        <section id="chat" style="border: 5px solid dimgray; background-color: dimgray;" name="{{room}}">
+        <input type="hidden" id="target" value={{dest}}>
+        <ul id="msg-container">    
+            {{#each conversation}}
+                <li id="msg-content">
+                    <span style="font-weight: bold">{{this.login}}:</span> {{this.message}}
+                </li>
+            {{/each}}
+        </ul>
+            <form action="" method="post" id="form-chat">
+                <input type="text" id="content" name="content" autocomplete="off"/><button id="btn-send">Send</button>
+            </form>
+        </section>
+
+        
+    </div>
+</div>
+<div style="clear:both; height: 15em;"></div>
+{{>footer}}
+<script type="text/javascript" src="/static/js/notification.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/chat.js"></script>
