@@ -29,5 +29,7 @@ Node.js v7.9 and MySQL.
 ## Installing
 
 First, run ```npm install``` command to install all depedencies.
+
 You also need to create an SQL database named ```matcha_db```, then import the file "matcha_db.sql".
+
 Now you can start server with ```node app.js``` then go to "http://localhost:8888/" and enjoy!
